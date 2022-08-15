@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package demo.servlet;
 
@@ -17,8 +17,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author rafar
  */
-@WebServlet(name = "VisualizadorRecomendacion", urlPatterns = {"/visualizadorRecomendacion"})
-public class VisualizadorRecomendacion extends HttpServlet {
+@WebServlet(name = "VisualizadorDeEstado", urlPatterns = {"/visualizadorDeEstado"})
+public class VisualizadorDeEstado extends HttpServlet{
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +34,7 @@ public class VisualizadorRecomendacion extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        String recomendacion = (String)session.getAttribute("recomendacion");
+        Boolean encendida = (Boolean)session.getAttribute("encendida");
         /*Integer totalAcumulado = (Integer)session.getAttribute("acumulado");
         if (totalAcumulado==null){
             totalAcumulado = 0;
@@ -47,23 +48,36 @@ public class VisualizadorRecomendacion extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet VisualizadorRecomendacion</title>");  
+            out.println("<title>Servlet VisualizadorDeEstado</title>");  
             out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
             out.println("<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css\"  crossorigin=\"anonymous\">");
             
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet VisualizadorRecomendacion</h1>");
+            out.println("<h1>Servlet VisualizadorDeEstado</h1>");
             out.println("<br><br>");
-            out.println("Se recomienda:");
+            out.println("Tu Raspberry se encuentra:");
             out.println("<br><br>");
-            out.println("<b>"+recomendacion+"</b>");
+            out.println("<b>"+encendida+"</b>");
+            
+            if (encendida){
             out.println("<br><br>");
+            out.println("Encendida");
+            out.println("<br><br>");
+            out.println("<img src="+"raspSwitchedOn.png"+" width = 300>");
+             }else{
+            out.println("<br><br>");
+            out.println("Apagada");
+            out.println("<br><br>");
+            out.println("<img src="+"raspSwitchedOff.png"+" width = 300>");
+            }
             
             //AÑADIR BOTON APAGAR/ENCENDER VENTILADOR
             
             out.println("<br><br><br>");
-            out.println("<a href=\"index.jsp\">Inicio</a>");
+            out.println("<a href=\"panelDeMando.jsp\">Acceder al panel de mando</a>");
+            out.println("<br><br><br>");
+            out.println("<a href=\"index.html\">Inicio</a>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -78,7 +92,6 @@ public class VisualizadorRecomendacion extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
@@ -92,7 +105,6 @@ public class VisualizadorRecomendacion extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
@@ -103,9 +115,8 @@ public class VisualizadorRecomendacion extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-    @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
 }

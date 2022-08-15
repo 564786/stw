@@ -4,6 +4,9 @@
  */
 package demo;
 
+import java.io.IOException;
+import java.net.InetAddress;
+
 /**
  *
  * @author rafar
@@ -48,6 +51,13 @@ public class Raspberry {
         this.estado = estado;
     }
     
-    
+    public void encendida(String host){              
+        try {
+            InetAddress direccion = InetAddress.getByName(host);
+            setEstado(direccion.isReachable(3000));
+        }catch (IOException e){
+            System.err.println("Ocurrió un error de E/S:" + e.getMessage());
+        }        
+    }
     
 }
