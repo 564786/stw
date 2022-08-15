@@ -1,11 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package demo.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,10 +15,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Usuario
+ * @author fsern
  */
-@WebServlet(name = "Sumador", urlPatterns = {"/sumador"})
-public class Sumador extends HttpServlet {
+@WebServlet(name = "VisualizadorRecomendacion", urlPatterns = {"/visualizadorRecomendacion"})
+public class VisualizadorRecomendacion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,32 +32,43 @@ public class Sumador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Integer s1 = Integer.valueOf(request.getParameter("s1"));
-        Integer s2 = Integer.valueOf(request.getParameter("s2"));
-        Integer suma = s1 + s2;
-        
         HttpSession session = request.getSession();
-        session.setAttribute("resultado", suma);
+        String recomendacion = (String)session.getAttribute("recomendacion");
+        /*Integer totalAcumulado = (Integer)session.getAttribute("acumulado");
+        if (totalAcumulado==null){
+            totalAcumulado = 0;
+        }
+        totalAcumulado += resultado;
+        session.setAttribute("acumulado", totalAcumulado);
+        */
         
-        response.sendRedirect("visualizador");
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet VisualizadorRecomendacion</title>");  
+            out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
+            out.println("<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css\"  crossorigin=\"anonymous\">");
+            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet VisualizadorRecomendacion</h1>");
+            out.println("<br><br>");
+            out.println("Se recomienda:");
+            out.println("<br><br>");
+            out.println("<b>"+recomendacion+"</b>");
+            out.println("<br><br>");
+            
+            //AÑADIR BOTON APAGAR/ENCENDER VENTILADOR
+            
+            out.println("<br><br><br>");
+            out.println("<a href=\"index.html\">Inicio</a>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
-    
-    
 
-    @Override
-    public void init(){
-        System.out.println("===== INIT");
-    }
-    
-    
-    @Override
-    public void destroy(){
-        System.out.println("===== DESTROY");
-    }
-    
-    
-    
-    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
