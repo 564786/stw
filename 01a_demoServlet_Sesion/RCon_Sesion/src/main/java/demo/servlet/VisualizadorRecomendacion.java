@@ -62,7 +62,24 @@ public class VisualizadorRecomendacion extends HttpServlet {
             
             //AÑADIR BOTON APAGAR/ENCENDER VENTILADOR
             
-            out.println("<br><br><br>");
+            out.println("<table>"
+                +"<tr>"
+                +    "<td>"
+                +        "<h3>Menu</h3>"
+                +  "</td>"
+                +"</tr>"
+
+                +"<tr>"
+                +    "<td>Refrigerar</td>"
+                +"</tr>"
+                +"<tr>"
+                +    "<td>Parar refrigeración</td>"
+                +"</tr>"
+            +"</table>");
+            
+            out.println("<br><br><br><br>");
+            out.println("<a href=\"panelDeMando.jsp\">Volver al panel de mando</a>");
+            out.println("<br>");
             out.println("<a href=\"index.jsp\">Inicio</a>");
             out.println("</body>");
             out.println("</html>");

@@ -3,8 +3,9 @@
     Created on : 15 ago 2022, 14:32:19
     Author     : rafar
 --%>
-<%@page import="demo.Raspberry"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,18 +30,19 @@
                     <td></td>
                     <td><input type="submit" value="Comprobar Estado"></td>
             </table>
-        </form>    
+        </form>
         
         <br>
         <br>  
         
-        <form method="POST" action="recomendar">
-            <!--SUSTITUIR ESTAS DOS LÍNEAS POR LA MEDIA DE TEMPERATURAS-->
+        
+        <!--form method="POST" action="recomendar">
+            <!--SUSTITUIR ESTAS DOS LÍNEAS POR LA MEDIA DE TEMPERATURAS>
             <input type=hidden name=s1 value=100>
             <input type=hidden name=s2 value=50>
-            <!----------------------------------------------------------->
+
             <button type="submit">Mostrar recomendacion</button>
-        </form>
+        </form-->
         
         <!--INCLUIR UNA TABLA DE IP's CONSULTADAS-->
         

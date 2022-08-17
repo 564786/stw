@@ -1,10 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package demo.servlet;
 
-import demo.Raspberry;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -16,10 +16,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author rafar
+ * @author Usuario
  */
-@WebServlet(name = "ComprobarEstado", urlPatterns = {"/comprobarEstado"})
-public class ComprobarEstado extends HttpServlet {
+@WebServlet(name = "MostrarIPConsultadas", urlPatterns = {"/mostrarIPConsultadas"})
+public class MostrarIPConsultadas extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,34 +32,26 @@ public class ComprobarEstado extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Boolean encendida;
-                
-        String s1 = String.valueOf(request.getParameter("s1"));
-        String ipRaspberry = s1;
+       // String recomendacion = "";
         ArrayList ipConsultadas = new ArrayList();
-        
-        Raspberry raspberry = new Raspberry();
-        raspberry.encendida(ipRaspberry);
-        encendida = raspberry.getEstado();
+        Integer s1 = Integer.valueOf(request.getParameter("s1"));
         ipConsultadas.add(s1);
-                
+        
         HttpSession session = request.getSession();
-        session.setAttribute("ipRaspberry", ipRaspberry);
-        session.setAttribute("encendida", encendida);
         session.setAttribute("ipConsultadas", ipConsultadas);
         
-        System.out.println(encendida);
-        
-        response.sendRedirect("visualizadorDeEstado");
+        //response.sendRedirect("visualizadorRecomendacion");
     }
     
     
 
+    @Override
     public void init(){
         System.out.println("===== INIT");
     }
     
     
+    @Override
     public void destroy(){
         System.out.println("===== DESTROY");
     }
@@ -75,6 +68,7 @@ public class ComprobarEstado extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
@@ -88,6 +82,7 @@ public class ComprobarEstado extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
@@ -98,6 +93,7 @@ public class ComprobarEstado extends HttpServlet {
      *
      * @return a String containing servlet description
      */
+    @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
