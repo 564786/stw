@@ -38,12 +38,14 @@ public class ConexionSSH extends HttpServlet{
     //private String comando = "";
     private Boolean leer = false;
     private String lecturaTemperatura = "";
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String accion = "";
         Boolean refrigerando = false;
+        String resultadoComando ="";
         
         String s1 = String.valueOf(request.getParameter("s1"));
               
@@ -52,36 +54,39 @@ public class ConexionSSH extends HttpServlet{
         switch(accion)
         {
             case "encender":
-                enviarComando(REFRIGERAR);
+                resultadoComando = enviarComando(REFRIGERAR);
                 refrigerando = true;
             break;
             case "apagar":
-                enviarComando(PARAR_REFRIGERACION);
+                resultadoComando = enviarComando(PARAR_REFRIGERACION);
                 refrigerando = false;
-                
+            /*
             case "comenzarlectura":
                 leer = true;
                 leerTemperatura();
+                resultadoComando =
             break;
             case "pararlectura":
                 leer = false;                
-            break;            
+            break;    
+            */
         }
         
         HttpSession session = request.getSession();
-        session.setAttribute("resultadoComando", refrigerando.toString());
+        session.setAttribute("resultadoComando", resultadoComando);
         
         response.sendRedirect("panelDeMando.jsp");        
     }
-    
+    /*
     public String leerTemperatura(){
-        String lectura ="";
+        String lectura = "";
         
         while(leer){    
             lectura = lectura + "\n"+ enviarComando(LEER_TEMPERATURA);
         }       
         return lectura;
     }
+    */
     
     public String enviarComando(String comando){
         
@@ -112,7 +117,6 @@ public class ConexionSSH extends HttpServlet{
         
         return resultado;
     }
-    
     
     
 @Override
