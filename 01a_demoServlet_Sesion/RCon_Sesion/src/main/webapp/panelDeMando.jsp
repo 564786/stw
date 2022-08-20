@@ -14,10 +14,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Raspberry Controller</title>
     </head>
+    
     <body>
         <h1>Panel del mando Raspberry Controller</h1>
         <hr>
-        <br>    
+        <br>   
+        
         <table>
             <tr>
                 <td>
@@ -26,7 +28,7 @@
             </tr>
             <tr>
                 <td>
-                    <form method="get" action="temperatura.html">
+                    <form method="get" action="temperatura.jsp">
                         <button type="submit">Mostrar temperatura</button>
                     </form>
                 </td>
@@ -34,7 +36,6 @@
             <tr>
                 <td>
                     <form method="POST" action="recomendar">
-                        <!--SUSTITUIR ESTAS DOS LÍNEAS POR LA MEDIA DE TEMPERATURAS-->
                         <input type=hidden name=s1 value=100>
                         <input type=hidden name=s2 value=50>
                         <button type="submit">Mostrar recomendacion</button>
@@ -42,19 +43,38 @@
                 </td>
             </tr>
             <tr>
-                <td>Refrigerar</td>
+                <td>
+                <form method="POST" action="conexionSSH">
+                    <input type=hidden name=s1 value=encender>
+                    <button type="submit">Refrigerar</button>
+                </form>
+                </td>
             </tr>
             <tr>
-                <td>Parar refrigeración</td>
+                <td>
+                <form method="POST" action="conexionSSH">
+                    <input type=hidden name=s1 value=apagar>
+                    <button type="submit">Parar refrigeracion</button>
+                </form>
+                </td>
             </tr>
             <tr>
-                <td>fifth</td>
+                <td>                    
+                <form method="POST" action="conexionSSH">
+                    <input type=hidden name=s1 value=comenzarlectura>
+                    <button type="submit">Comenzar lecturas</button>
+                </form>
+                </td>
             </tr>
             <tr>
-                <td>sixth</td>
+                <td>                
+                    <form method="POST" action="conexionSSH">
+                    <input type=hidden name=s1 value=pararlectura>
+                    <button type="submit">Parar lecturas</button>
+                </form></td>
             </tr>
         </table>
-
+        
             <br>
             <br>
             <br>

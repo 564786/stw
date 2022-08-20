@@ -1,12 +1,21 @@
+<%-- 
+    Document   : temperatura
+    Created on : 19 ago 2022, 18:41:56
+    Author     : rafar
+--%>
+
+<%@page import="demo.LecturaTemperaturaCPU"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Raspberry Controller </title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"  crossorigin="anonymous">
+        <title>JSP Page</title>
     </head>
     <body>
+        <h1>Hello World! I'm temperata.jsp</h1>
         
+                
         <h1> TEMPERATURA </h1>
         
         <br><br><br>      
@@ -27,11 +36,14 @@
             </tr>
                                     
             <tr>
-                <td>
-                    Datos raspberry
-                </td>
+                
+
+                
                 
                 <td>
+                    Datos raspberry
+                    <br>
+                    <%LecturaTemperaturaCPU.leerTemperaturas();%>
                 </td>
                 
                 <td>
@@ -73,6 +85,5 @@
         <a href="panelDeMando.jsp">Volver al panel de mando</a>
         <br>
         <a href="index.jsp">Inicio</a>
-        
     </body>
 </html>
