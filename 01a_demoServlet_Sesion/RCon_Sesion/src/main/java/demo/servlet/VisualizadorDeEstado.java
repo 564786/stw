@@ -67,22 +67,21 @@ public class VisualizadorDeEstado extends HttpServlet{
             out.println("<b>Encendida</b>");
             out.println("<br><br>");
             out.println("<img src=\"raspSwitchedOn.png\" width = 300>");
+            
+            out.println("<br><br><br>");
+            
+            out.println("<form method=\"POST\" action=\"panelDeMando.jsp\">");
+            out.println("<input type=hidden name=s1 value=100>");
+            out.println("<button type=\"submit\">Acceder al panel de mando</button>");
+            out.println("</form>");
+            
              }else{
             out.println("<br><br>");
             out.println("Apagada");
             out.println("<br><br>");
             out.println("<img src=\"raspSwitchedOff.png\" width = 300>");
+            
             }
-            
-            //AÑADIR BOTON APAGAR/ENCENDER VENTILADOR
-            
-            out.println("<br><br><br>");
-            
-            out.println("<form method=\"POST\" action=\"panelDeMando.jsp\">");
-                out.println("<input type=hidden name=s1 value=100>");
-                out.println("<button type=\"submit\">Acceder al panel de mando</button>");
-            out.println("</form>");
-            
             
             //out.println("<a href=\"panelDeMando.jsp\">Acceder al panel de mando</a>");
             out.println("<br><br><br>");

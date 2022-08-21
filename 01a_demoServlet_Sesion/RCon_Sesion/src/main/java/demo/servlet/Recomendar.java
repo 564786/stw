@@ -37,7 +37,7 @@ public class Recomendar extends HttpServlet {
         Integer s1 = Integer.valueOf(request.getParameter("s1"));
         Integer s2 = Integer.valueOf(request.getParameter("s2"));
         Integer diferencia = s2 - s1;
-                
+                        
         if(diferencia <= 1){
             recomendacion = "No es necesario tomar ninguna accion";
         }else{

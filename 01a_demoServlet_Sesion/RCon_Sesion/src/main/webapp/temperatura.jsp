@@ -3,9 +3,8 @@
     Created on : 19 ago 2022, 18:41:56
     Author     : rafar
 --%>
-
-<%@page import="demo.LecturaTemperaturaCPU"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,42 +12,55 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World! I'm temperata.jsp</h1>
+        <h1>Hello World! I'm temperatura.jsp</h1>
         
                 
-        <h1> TEMPERATURA </h1>
+        <h1> TEMPERATURA </h1>        
         
-        <br><br><br>      
-        
-        <table>
+        <table border="black">
             <tr>
-                <td>
-                    <h2> MQTT </h2>
-                </td>
-                
-                <td>
-                    "      ---------------    "
-                </td>
-                
-                <td>
-                    <h2> WEB REST </h2>
-                </td>
+              <td><h2> CPU Raspberry </h2></td>
             </tr>
-                                    
-            <tr>
-                
 
-                
-                
-                <td>
-                    Datos raspberry
-                    <br>
-                    <%LecturaTemperaturaCPU.leerTemperaturas();%>
-                </td>
-                
-                <td>
-                    Datos OpenWeather
-                </td>
+            <tr>
+              <td>
+                <%  
+                    String resultado = "555";
+                    int temperatura = 555;
+                    if ((String)session.getAttribute("lecturaTemperaturas")!= null){
+                        resultado = (String)session.getAttribute("lecturaTemperaturas");
+                        temperatura = Integer.parseInt(resultado.substring(0,5))/1000;
+                        out.print(temperatura + " ºC");
+                    }        
+                %>   
+            </tr>
+            
+                        <tr>
+              <td>
+                    <form method="POST" action="conexionSSH">
+                        <input type=hidden name=s1 value=comenzarLectura>
+                        <button type="submit">Leer temperatura</button>
+                    </form>               
+              </td>
+              <td>
+                  <!<!-- DESCOMENTAR SI SE INCLUYEN LAS LECTURAS MULTIPLES -->
+                    <!--form method="POST" action="conexionSSH">
+                        <input type=hidden name=s1 value=finalizarLectura>
+                        <button type="submit">Parar lecturas</button>
+                    </form-->   
+              </td>
+
+            </tr>
+        </table>  
+            
+        <br><br><br><br>
+            
+        <table border="black">
+            <tr>
+              <td><h2> OPENWHEATHER </h2></td>
+            </tr>
+            <tr>
+              <td>Temperatura</td>
             </tr>
         </table>
             
@@ -70,6 +82,7 @@
             </table>
         </form-->     
         
+        
         <form method="POST" action="recomendar">
             <!--SUSTITUIR ESTAS DOS LÍNEAS POR LA MEDIA DE TEMPERATURAS-->
             <input type=hidden name=s1 value=100>
@@ -78,10 +91,7 @@
             <button type="submit">Mostrar recomendacion</button>
         </form>
         
-        <br>
-        <br>
-        <br>
-        <br>
+        <br><br><br><br>
         <a href="panelDeMando.jsp">Volver al panel de mando</a>
         <br>
         <a href="index.jsp">Inicio</a>

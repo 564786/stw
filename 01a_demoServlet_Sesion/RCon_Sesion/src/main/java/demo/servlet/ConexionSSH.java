@@ -28,60 +28,63 @@ public class ConexionSSH extends HttpServlet{
      */
  
     private static final String USERNAME = "pi";
-    private static final String HOST = "192.168.99.60";
+    private static final String HOST = "192.168.1.142";
     private static final int PORT = 22;
     private static final String PASSWORD = "raspberry";
-    private static final String REFRIGERAR = "Mosquitto_pub -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 1";
-    private static final String PARAR_REFRIGERACION = "Mosquitto_pub -h 192.168.1.140 -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 0";
-    private static final String LEER_TEMPERATURA = "";
+    private static final String REFRIGERAR = "mosquitto_pub -h 192.168.1.140 -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 1";
+    private static final String PARAR_REFRIGERACION = "mosquitto_pub -h 192.168.1.140 -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 0";
+    private static final String LEER_TEMPERATURA = "cat /sys/class/thermal/thermal_zone0/temp";
     private static final String PARAR_LECTURA = "";
-    //private String comando = "";
-    private Boolean leer = false;
-    private String lecturaTemperatura = "";
-
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String accion = "";
         Boolean refrigerando = false;
-        String resultadoComando ="";
-        
-        String s1 = String.valueOf(request.getParameter("s1"));
-              
+        String resultadoComando = "";
+        String lecturaTemperaturas;
+        Boolean leerTemperaturas = false;
+        String s1 = String.valueOf(request.getParameter("s1"));              
         accion = s1;
+        
+        HttpSession session = request.getSession();
         
         switch(accion)
         {
             case "encender":
                 resultadoComando = enviarComando(REFRIGERAR);
                 refrigerando = true;
+                response.sendRedirect("panelDeMando.jsp");
             break;
             case "apagar":
                 resultadoComando = enviarComando(PARAR_REFRIGERACION);
                 refrigerando = false;
-            /*
-            case "comenzarlectura":
-                leer = true;
-                leerTemperatura();
-                resultadoComando =
+                response.sendRedirect("panelDeMando.jsp");
+            
+            case "comenzarLectura":
+                session.setAttribute("lecturaTemperaturas", " ");
+                leerTemperaturas = true;
+                lecturaTemperaturas = enviarComando(LEER_TEMPERATURA);
+                //leerTemperatura();
+                session.setAttribute("lecturaTemperaturas", lecturaTemperaturas);
+                session.setAttribute("leerTemperaturas", leerTemperaturas);
+                
+                response.sendRedirect("temperatura.jsp"); 
             break;
-            case "pararlectura":
-                leer = false;                
+            case "finalizarLectura":
+                leerTemperaturas = false;
+                session.setAttribute("leerTemperaturas", leerTemperaturas);
+                response.sendRedirect("temperatura.jsp");
             break;    
-            */
-        }
-        
-        HttpSession session = request.getSession();
-        session.setAttribute("resultadoComando", resultadoComando);
-        
-        response.sendRedirect("panelDeMando.jsp");        
+            
+        }       
     }
     /*
     public String leerTemperatura(){
         String lectura = "";
         
         while(leer){    
+    
             lectura = lectura + "\n"+ enviarComando(LEER_TEMPERATURA);
         }       
         return lectura;

@@ -64,16 +64,14 @@ public class VisualizadorRecomendacion extends HttpServlet {
             
             out.println("<table>"
                 +"<tr>"
-                +    "<td>"
-                +        "<h3>Menu</h3>"
-                +  "</td>"
+                +    "<td></td>"
                 +"</tr>"
 
                 +"<tr>"
-                +    "<td>Refrigerar</td>"
+                +    "<td></td>"
                 +"</tr>"
                 +"<tr>"
-                +    "<td>Parar refrigeración</td>"
+                +    "<td></td>"
                 +"</tr>"
             +"</table>");
             

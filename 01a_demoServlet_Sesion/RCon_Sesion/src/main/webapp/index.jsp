@@ -12,6 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Raspberry Controller</title>
     </head>
+    
+    
     <body>
         <h1>Bienvenido/a a Raspberry Controller</h1>
         <hr>
@@ -33,8 +35,7 @@
         </form>
         
         <br>
-        <br>  
-        
+        <br>          
         
         <!--form method="POST" action="recomendar">
             <!--SUSTITUIR ESTAS DOS LÍNEAS POR LA MEDIA DE TEMPERATURAS>
