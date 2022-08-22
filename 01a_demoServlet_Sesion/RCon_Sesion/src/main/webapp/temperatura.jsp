@@ -38,11 +38,13 @@
 
                 </td>
                 <td>
-                    <form method="POST" action="conexionSSH">
-                        <input type=hidden name=s1 value=comenzarLectura>
-                        <button type="submit">Leer temperatura</button>
-                    </form>    
-
+                    <form method="POST" action="recomendar">
+                        <!--SUSTITUIR ESTAS DOS LÍNEAS POR LA MEDIA DE TEMPERATURAS-->
+                        <input type=hidden name=s1 value=100>
+                        <input type=hidden name=s2 value=50>
+                        <!----------------------------------------------------------->
+                        <button type="submit">Mostrar recomendacion</button>
+                    </form>
                 </td>                
             </tr>
 
@@ -110,9 +112,9 @@
             </tr>
         </table>  
             
-        <br><br><br><br>
+        <br><br>
             
-        <table border="black">
+        <!--table border="black">
             <tr>
               <td><h2> OPENWHEATHER </h2></td>
             </tr>
@@ -121,7 +123,7 @@
             </tr>
         </table>
             
-        <br><br><br><br>
+        <br><br><br><br-->
 
         <!--form method="POST" action="sumador">
             <table>
@@ -137,16 +139,51 @@
                     <td></td>
                     <td><input type="submit" value="¡A Sumar!"></td>
             </table>
-        </form-->     
+        </form-->   
+        <table>
+            <tr>
+                <td>
+                    <button id="iniciarLectura" onclick="iniciarLectura();">Iniciar lectura</button> 
+                </td>                    
+                <td>
+                    <button id="pararLectura" onclick="pararLectura();">Parar lectura</button>
+                </td>
+            </tr>
         
+            <tr>
+                <td align="center" valign="top">
+                    <canvas id="ledGrifoIn" width="50" height="50" style="border:1px solid #d3d3d3;">
+                        Your browser does not support the HTML5 canvas tag.
+                    </canvas>
+                    <br>
+                    Grifo IN: <div id="grifoIn">? ? ?</div>
+                    <br>
+                    <button id="abrirGrifoIn" onclick="openGrifoIn();">Abrir</button> 
+                    <button id="cerrarGrifoIn" onclick="closeGrifoIn();">Cerrar</button>
+                </td>
+                                     
+                
+                <td align="center">
+                    <canvas id="graficoDeposito" width="50" height="260" style="border:1px solid #d3d3d3;">
+                        Your browser does not support the HTML5 canvas tag.
+                    </canvas>
+                    <table><tr><td>Depósito: </td><td><div id="nivelDeposito" style="font-weight: bold">? ? ?</div></td><td>litros</td></tr></table>
+                </td>
+                
+                <td align="center" valign="bottom">
+                    <canvas id="ledGrifoOut" width="50" height="50" style="border:1px solid #d3d3d3;">
+                        Your browser does not support the HTML5 canvas tag.
+                    </canvas>
+                    <br>
+                    Grifo OUT: <div id="grifoOut">? ? ?</div>
+                    <br>
+                    <button id="abrirGrifoOut" onclick="openGrifoOut();">Abrir</button> 
+                    <button id="cerrarGrifoOut" onclick="closeGrifoOut();">Cerrar</button>
+                </td>
+            </tr>
+        </table>
         
-        <form method="POST" action="recomendar">
-            <!--SUSTITUIR ESTAS DOS LÍNEAS POR LA MEDIA DE TEMPERATURAS-->
-            <input type=hidden name=s1 value=100>
-            <input type=hidden name=s2 value=50>
-            <!----------------------------------------------------------->
-            <button type="submit">Mostrar recomendacion</button>
-        </form>
+        <script type="text/javascript" src="websocket.js"></script>
         
         <br><br><br><br>
         <a href="panelDeMando.jsp">Volver al panel de mando</a>
