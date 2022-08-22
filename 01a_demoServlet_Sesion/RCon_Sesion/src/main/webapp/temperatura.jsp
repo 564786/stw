@@ -15,33 +15,90 @@
         <h1>Hello World! I'm temperatura.jsp</h1>
         
                 
-        <h1> TEMPERATURA </h1>        
+        <h1> TEMPERATURA </h1>  
         
-        <table border="black">
+        <table border="back">
             <tr>
-              <td><h2> CPU Raspberry </h2></td>
-            </tr>
-
+                <td>
+                    <h2>Menu</h2>
+                </td>
             <tr>
-              <td>
-                <%  
-                    String resultado = "555";
-                    int temperatura = 555;
-                    if ((String)session.getAttribute("lecturaTemperaturas")!= null){
-                        resultado = (String)session.getAttribute("lecturaTemperaturas");
-                        temperatura = Integer.parseInt(resultado.substring(0,5))/1000;
-                        out.print(temperatura + " ºC");
-                    }        
-                %>   
-            </tr>
-            
-                        <tr>
-              <td>
+                <td>
                     <form method="POST" action="conexionSSH">
                         <input type=hidden name=s1 value=comenzarLectura>
                         <button type="submit">Leer temperatura</button>
-                    </form>               
-              </td>
+                    </form>    
+
+                </td>
+                <td>
+                    <form method="POST" action="conexionSSH">
+                        <input type=hidden name=s1 value=comenzarLectura>
+                        <button type="submit">Leer temperatura</button>
+                    </form>    
+
+                </td>
+                <td>
+                    <form method="POST" action="conexionSSH">
+                        <input type=hidden name=s1 value=comenzarLectura>
+                        <button type="submit">Leer temperatura</button>
+                    </form>    
+
+                </td>                
+            </tr>
+
+            <tr>
+                <td>
+                    OTRA CELDA
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    OTRA CELDA
+                </td>
+            </tr>
+        </table>
+        
+        <br><br>
+        
+        <table border="black">
+            
+            <tr>
+                <td><h2> CPU Raspberry </h2></td>
+                <td><h2> OPENWHEATHER </h2></td>
+            </tr>
+            
+            <tr>
+                <td>hola</td>
+                <td>hola otra vez</td>
+                
+            </tr>
+            
+            <tr>
+                <td>Hola?</td>
+            </tr>    
+                <%for(int i =1; i<=5; i++){  
+                    String resultado = "1";
+                    
+                    double temperatura = 1;
+                    if ((String)session.getAttribute("lecturaTemperaturas")!= null){
+                        resultado = (String)session.getAttribute("lecturaTemperaturas");
+                        temperatura = Integer.parseInt(resultado.substring(0,5))/1000;
+                  %>
+                <tr><td> 
+                        
+                      <%
+                        out.print(temperatura + " ºC");
+                        Thread.sleep(1000);
+                    }        
+                    %>   
+                </td></tr>
+                <%}%>
+            </tr>
+
+            <tr>
+                <td>
+           c
+                </td>
               <td>
                   <!<!-- DESCOMENTAR SI SE INCLUYEN LAS LECTURAS MULTIPLES -->
                     <!--form method="POST" action="conexionSSH">
