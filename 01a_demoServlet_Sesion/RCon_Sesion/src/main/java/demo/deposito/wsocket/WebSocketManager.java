@@ -47,13 +47,13 @@ public class WebSocketManager {
     public void onOpen(Session _session){
         System.out.println(">>> Session " +_session.getId()+" created");
         sessions.add(_session);
-        /*
-        if (deposito.lecturaIniciada()){
+        
+        if (deposito.lecturaEnCurso()){
             broadcastMsg("lecturaIniciada");
         }else{
             broadcastMsg("lecturaParada");
-        }*/
-
+        }
+        /*
         if (deposito.isGrifoIn()){
             broadcastMsg("grifoInABIERTO");
         }else{
@@ -64,6 +64,7 @@ public class WebSocketManager {
         }else{
             broadcastMsg("grifoOutCERRADO");
         }
+        */
     }
  
     /**
@@ -75,6 +76,14 @@ public class WebSocketManager {
     public void onMessage(String _message, Session _session){
        System.out.println("======== MSG RX: " +_message);
        switch (_message){
+           
+            case "iniciarLectura":
+               deposito.setLecturaEnCurso(true);
+               break;
+            case "pararLectura":
+               deposito.setLecturaEnCurso(false);
+               break;
+            /*
            case "openGrifoIn":
                deposito.setGrifoIn(true);
                break;
@@ -90,6 +99,7 @@ public class WebSocketManager {
            case "closeGrifoOut":
                deposito.setGrifoOut(false);
                break;
+*/
        }
        
        

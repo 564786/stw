@@ -143,44 +143,49 @@
         <table>
             <tr>
                 <td>
+
                     <button id="iniciarLectura" onclick="iniciarLectura();">Iniciar lectura</button> 
                 </td>                    
                 <td>
                     <button id="pararLectura" onclick="pararLectura();">Parar lectura</button>
                 </td>
             </tr>
-        
-            <tr>
-                <td align="center" valign="top">
-                    <canvas id="ledGrifoIn" width="50" height="50" style="border:1px solid #d3d3d3;">
+                
+            <tr>                   
+                <br>
+                <b>Estado lectura: </b><div id="estadoLectura">? ? ?</div>
+                <br>
+            </tr>
+                
+            
+                <td align="center">
+                    <canvas id="graficoDeposito" width="50" height="260" style="border:1px solid #d3d3d3;">
                         Your browser does not support the HTML5 canvas tag.
                     </canvas>
+                    <table><tr><td>Termómetro </td><td><div id="nivelDeposito" style="font-weight: bold">? ? ?</div></td><td> ºC</td></tr></table>
+                </td>
+            </tr>
+            
+            <!--tr>
+                <td align="center" valign="top">
+
                     <br>
                     Grifo IN: <div id="grifoIn">? ? ?</div>
                     <br>
                     <button id="abrirGrifoIn" onclick="openGrifoIn();">Abrir</button> 
                     <button id="cerrarGrifoIn" onclick="closeGrifoIn();">Cerrar</button>
                 </td>
-                                     
-                
-                <td align="center">
-                    <canvas id="graficoDeposito" width="50" height="260" style="border:1px solid #d3d3d3;">
-                        Your browser does not support the HTML5 canvas tag.
-                    </canvas>
-                    <table><tr><td>Depósito: </td><td><div id="nivelDeposito" style="font-weight: bold">? ? ?</div></td><td>litros</td></tr></table>
-                </td>
-                
+                         
                 <td align="center" valign="bottom">
-                    <canvas id="ledGrifoOut" width="50" height="50" style="border:1px solid #d3d3d3;">
-                        Your browser does not support the HTML5 canvas tag.
-                    </canvas>
+
                     <br>
                     Grifo OUT: <div id="grifoOut">? ? ?</div>
                     <br>
                     <button id="abrirGrifoOut" onclick="openGrifoOut();">Abrir</button> 
                     <button id="cerrarGrifoOut" onclick="closeGrifoOut();">Cerrar</button>
                 </td>
-            </tr>
+            </tr-->
+            
         </table>
         
         <script type="text/javascript" src="websocket.js"></script>

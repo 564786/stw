@@ -8,6 +8,7 @@ package demo;
 import javax.annotation.PostConstruct;
 import javax.ejb.Schedule;
 import demo.deposito.wsocket.WebSocketManager;
+import demo.servlet.ConexionSSH;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -23,7 +24,8 @@ public class DepositoBean {
     private final Double NIVEL_MAXIMO   = 250.0;    // valor máximo del depósito
     private boolean grifoIn             = false;    // estado del grifo de entrada: true=>abierto
     private boolean grifoOut            = false;    // estado del grifo de salida: true=>abierto
-    private boolean lecturaIniciada     = false;
+    private boolean lecturaEnCurso      = false;
+    private Double temperatura          = 0.0;
     
     @EJB  WebSocketManager websocket;
     
@@ -50,6 +52,7 @@ public class DepositoBean {
     
     @Schedule (hour="*", minute="*", second="*/1")
     public void updateNivel(){
+        /*
         if (grifoIn){
             this.nivel += 0.15;
             if (this.nivel > NIVEL_MAXIMO){
@@ -64,23 +67,39 @@ public class DepositoBean {
                 grifoOut=false;
             }
         }
+        */
+        
 
-      //  if (websocket!=null){
-            websocket.broadcastValorNumerico(this.nivel);
-//System.out.println(this.toString()+"\tNivel: "+nivel+"\t"+new Date().toString());
-     //   }
+        this.temperatura = 50.0;
+    
+        //SUSTITUR TRUE POR lecturaEnCurso()
+        if ((websocket!=null)&&(true)){
+            websocket.broadcastValorNumerico(60);
+            //System.out.println(this.toString()+"\tNivel: "+nivel+"\t"+new Date().toString());
+            System.out.println(temperatura);
+        }
     }
     
     
     public double getNivel(){
-        return this.nivel;
+        return this.temperatura;
     }
     
-    /*
-    public boolean lecturaIniciada(){
-        return true;
+    
+    public boolean lecturaEnCurso(){
+        return lecturaEnCurso;
     }
-    */
+    
+    public void setLecturaEnCurso(boolean _leer){
+        this.lecturaEnCurso = _leer;
+        
+        if (this.lecturaEnCurso){
+            websocket.broadcastMsg("lecturaEnCurso");
+        }else{
+            websocket.broadcastMsg("lecturaParada");
+        }
+    }
+    /*
     public boolean isGrifoIn() {
         return grifoIn;
     }
@@ -107,6 +126,6 @@ public class DepositoBean {
         }
     }
     
-    
+    */
 
 }
