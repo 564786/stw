@@ -6,6 +6,7 @@
 
 
 
+<%@page import="demo.ConexionSSH"%>
 <%@page import="java.io.IOException"%>
 <%@page import="com.jcraft.jsch.JSchException"%>
 <%@page import="demo.SSHConnector"%>
@@ -14,7 +15,10 @@
 <%@page import="java.io.IOException"%>
 <%@page import="static java.lang.Integer.parseInt"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%ConexionSSH conexionSSH = new ConexionSSH();
+    final String REFRIGERAR = "mosquitto_pub -h 192.168.1.140 -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 1";
+    final String PARAR_REFRIGERACION = "mosquitto_pub -h 192.168.1.140 -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 0";
+    %>
 
 <!DOCTYPE html>
 <html>
@@ -43,19 +47,14 @@
 
             <tr>
                 <td>
-                    <form method="POST" action="conexionSSH">
-                        <input type=hidden name=s1 value=encender>
-                        <button type="submit">Refrigerar</button>
-                    </form>
+                    <button id="iniciarRefrigeracion" onclick="conexionSSH.enviarComando("mosquitto_pub -h 192.168.1.140 -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 1")">Iniciar Refrigeración</button> 
 
                 </td>
             </tr>
             <tr>
                 <td>
-                    <form method="POST" action="conexionSSH">
-                        <input type=hidden name=s1 value=apagar>
-                        <button type="submit">Parar refrigeracion</button>
-                    </form>
+                    <button id="iniciarRefrigeracion" onclick="conexionSSH.enviarComando(PARAR_REFRIGERACION)">Parar Refrigeración</button> 
+
                 </td>
             </tr>
         </table>

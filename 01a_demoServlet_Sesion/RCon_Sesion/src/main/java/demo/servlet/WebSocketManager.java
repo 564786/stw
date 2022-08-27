@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package demo.deposito.wsocket;
+package demo.servlet;
 
-import demo.DepositoBean;
+import demo.TermometroBean;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,18 +22,18 @@ import javax.websocket.server.ServerEndpoint;
  
 /** 
  * @ServerEndpoint gives the relative name for the websocket end point
- * This will be accessed via ws://<hostName>:8080/<appName>/deposito
+ * This will be accessed via ws://<hostName>:8080/<appName>/termometro
  * 
  * Está implementado como un EJB stateless singleton, pero podría ser 
- * también un POJO singleton. En ese caso la variable "deposito" habría
+ * también un POJO singleton. En ese caso la variable "termometro" habría
  * que obtenerla mediante JNDI lookup (InitialContext, .lookup("JNDIname"), etc);
  */
 
 @Singleton
-@ServerEndpoint("/deposito") 
+@ServerEndpoint("/termometro") 
 public class WebSocketManager {
 
-    @EJB DepositoBean deposito;
+    @EJB TermometroBean termometro;
     private Set<Session> sessions = new HashSet<Session>(); 
 
 
@@ -47,24 +47,12 @@ public class WebSocketManager {
     public void onOpen(Session _session){
         System.out.println(">>> Session " +_session.getId()+" created");
         sessions.add(_session);
-        
-        if (deposito.lecturaEnCurso()){
+
+        if(termometro.lecturaIniciada()){
             broadcastMsg("lecturaIniciada");
         }else{
             broadcastMsg("lecturaParada");
         }
-        /*
-        if (deposito.isGrifoIn()){
-            broadcastMsg("grifoInABIERTO");
-        }else{
-            broadcastMsg("grifoInCERRADO");
-        }
-        if (deposito.isGrifoOut()){
-            broadcastMsg("grifoOutABIERTO");
-        }else{
-            broadcastMsg("grifoOutCERRADO");
-        }
-        */
     }
  
     /**
@@ -74,32 +62,22 @@ public class WebSocketManager {
      */
     @OnMessage
     public void onMessage(String _message, Session _session){
-       System.out.println("======== MSG RX: " +_message);
+       System.out.println("======== MSG RX: "+_message);
        switch (_message){
-           
-            case "iniciarLectura":
-               deposito.setLecturaEnCurso(true);
-               break;
-            case "pararLectura":
-               deposito.setLecturaEnCurso(false);
-               break;
-            /*
-           case "openGrifoIn":
-               deposito.setGrifoIn(true);
+                          
+           case "iniciarLectura":
+               termometro.setEstadoLectura(true);
                break;
                
-           case "closeGrifoIn":
-               deposito.setGrifoIn(false);
+           case "pararLectura":               
+               termometro.setEstadoLectura(false);
                break;
-               
-           case "openGrifoOut":
-               deposito.setGrifoOut(true);
+           case "iniciarRefrigeracion":
+               termometro.iniciarRefrigeracion();
                break;
-               
-           case "closeGrifoOut":
-               deposito.setGrifoOut(false);
-               break;
-*/
+           case "pararRefrigeracion":
+               termometro.pararRefrigeracion();
+           break;
        }
        
        

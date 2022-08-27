@@ -190,6 +190,63 @@
         
         <script type="text/javascript" src="websocket.js"></script>
         
+        
+        
+        
+        <table>
+            
+            
+            <tr>                
+                <td>
+                    
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+
+                </td>
+                
+                <td align="center" valign="bottom">
+
+                    <br>
+                    Estado Lectura: <div id="lectura">? ? ?</div>
+                    <br>
+                    <button id="botonIniciarRefrigeracion" onclick="iniciarRefrigeracion();">Iniciar Refrigeración</button> 
+                    <button id="botonParararRefrigeracion" onclick="pararRefrigeracion();">Parar Refrigeración</button> 
+                    <button id="botonIniciarLectura" onclick="iniciarLectura();">Iniciar Lectura</button> 
+                    <button id="botonPararLectura" onclick="pararLectura();">Parar Lectura</button>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <canvas id="graficoTermometro" width="50" height="260" style="border:1px solid #d3d3d3;">
+                        Your browser does not support the HTML5 canvas tag.
+                    </canvas>
+                    <table><tr><td>Termómetro: </td><td><div id="tempTermometro" style="font-weight: bold">? ? ?</div></td><td>ºC</td></tr></table>
+                </td>
+            </tr>
+            
+        </table>
+        <br>
+        <br>
+        
+        <script type="text/javascript" src="websocket.js"></script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <br><br><br><br>
         <a href="panelDeMando.jsp">Volver al panel de mando</a>
         <br>
