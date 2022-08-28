@@ -109,8 +109,6 @@ function closeSocket(){
     webSocket.close();
 }
 
-
-
 /**
  * ==================== updateDeposito =========================================
  * @param {type} _temperatura
@@ -123,10 +121,18 @@ function updateTermometro(_temperatura){
     tempTermometro.innerHTML = nivel;
     
 //==== depósito ============================
-    graficoTermometro.fillStyle = "#FFFFFF"; //blanco
-    graficoTermometro.fillRect(5,0,40,260);
-    graficoTermometro.fillStyle = "#0000FF"; // rojo
-    graficoTermometro.fillRect(5, (255-temperatura), 40, temperatura);
+
+        
+    graficoTermometro.fillStyle = "#FFFFFF"; //blanco #FFFFFF
+    graficoTermometro.fillRect(5,0,40,126);
+    if(temperatura<=45.5){
+            graficoTermometro.fillStyle = "green"; // rojo #0000FF
+    }else if((temperatura>45.5)&&(temperatura<=46.5)){
+            graficoTermometro.fillStyle = "orange"; // rojo #0000FF
+    }else{
+            graficoTermometro.fillStyle = "red"; // rojo #0000FF
+    }
+    graficoTermometro.fillRect(5, (120-temperatura), 40, temperatura);
     
     
 //==== lectura temperatura ============================

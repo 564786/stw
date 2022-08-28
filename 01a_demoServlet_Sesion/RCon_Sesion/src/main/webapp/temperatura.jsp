@@ -4,6 +4,9 @@
     Author     : rafar
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="demo.TemperaturaOW"%>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -22,21 +25,30 @@
                 <td>
                     <h2>Menu</h2>
                 </td>
+            </tr>
             <tr>
                 <td>
-                    <form method="POST" action="conexionSSH">
-                        <input type=hidden name=s1 value=comenzarLectura>
-                        <button type="submit">Leer temperatura</button>
-                    </form>    
-
+                    <button id="botonIniciarRefrigeracion" onclick="iniciarRefrigeracion();">Iniciar Refrigeración</button> 
                 </td>
+            </tr>
+            <tr>
                 <td>
-                    <form method="POST" action="conexionSSH">
-                        <input type=hidden name=s1 value=comenzarLectura>
-                        <button type="submit">Leer temperatura</button>
-                    </form>    
+                    <button id="botonParararRefrigeracion" onclick="pararRefrigeracion();">Parar Refrigeración</button>   
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <!--button id="botonIniciarRefrigeracion" onclick="iniciarRefrigeracion();">Iniciar Refrigeración</button> 
+                    <button id="botonParararRefrigeracion" onclick="pararRefrigeracion();">Parar Refrigeración</button--> 
+                    <button id="botonIniciarLectura" onclick="iniciarLectura();">Iniciar Lectura</button> 
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="botonPararLectura" onclick="pararLectura();">Parar Lectura</button>
 
                 </td>
+            <tr>
                 <td>
                     <form method="POST" action="recomendar">
                         <!--SUSTITUIR ESTAS DOS LÍNEAS POR LA MEDIA DE TEMPERATURAS-->
@@ -45,17 +57,6 @@
                         <!----------------------------------------------------------->
                         <button type="submit">Mostrar recomendacion</button>
                     </form>
-                </td>                
-            </tr>
-
-            <tr>
-                <td>
-                    OTRA CELDA
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    OTRA CELDA
                 </td>
             </tr>
         </table>
@@ -70,168 +71,54 @@
             </tr>
             
             <tr>
-                <td>hola</td>
-                <td>hola otra vez</td>
-                
-            </tr>
-            
-            <tr>
-                <td>Hola?</td>
-            </tr>    
-                <%for(int i =1; i<=5; i++){  
-                    String resultado = "1";
+               <td align="center" valign="bottom">
+
+                    <br>
+                    Estado Lectura: <b><div id="lectura">? ? ?</div></b>
+                    <br>
+                </td> 
+                <td align="center">
+                    <%
+                        TemperaturaOW temperaturaOW = new TemperaturaOW();
+                        //temperaturaOW.getTemperaturaOW("2");
+                        out.println("Temperatura máxima en <br> <b>Teruel</b> <br> para hoy es:");
+
+                        //out.println(temperaturaOW.test());
                     
-                    double temperatura = 1;
-                    if ((String)session.getAttribute("lecturaTemperaturas")!= null){
-                        resultado = (String)session.getAttribute("lecturaTemperaturas");
-                        temperatura = Integer.parseInt(resultado.substring(0,5))/1000;
-                  %>
-                <tr><td> 
-                        
-                      <%
-                        out.print(temperatura + " ºC");
-                        Thread.sleep(1000);
-                    }        
-                    %>   
-                </td></tr>
-                <%}%>
-            </tr>
-
-            <tr>
-                <td>
-           c
+                    
+                    %>
                 </td>
-              <td>
-                  <!<!-- DESCOMENTAR SI SE INCLUYEN LAS LECTURAS MULTIPLES -->
-                    <!--form method="POST" action="conexionSSH">
-                        <input type=hidden name=s1 value=finalizarLectura>
-                        <button type="submit">Parar lecturas</button>
-                    </form-->   
-              </td>
-
             </tr>
+            <tr>
+                <td align="center">
+                <div id="tempTermometro" style="font-weight: bold">? ? ?</div>ºC
+                </td>  
+                <td align="center">
+                    <b>
+                 <%
+                     out.println(temperaturaOW.getTemperaturaOW());
+                 %>
+                    </b>
+                    <br>
+                ºC
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    Termómetro: 
+                    <br>
+                    <canvas id="graficoTermometro" width="50" height="126" style="border:1px solid #d3d3d3;">
+                        Your browser does not support the HTML5 canvas tag.
+                    </canvas>
+                    </td>               
+            </tr>
+
+
+
         </table>  
             
         <br><br>
-            
-        <!--table border="black">
-            <tr>
-              <td><h2> OPENWHEATHER </h2></td>
-            </tr>
-            <tr>
-              <td>Temperatura</td>
-            </tr>
-        </table>
-            
-        <br><br><br><br-->
-
-        <!--form method="POST" action="sumador">
-            <table>
-                <tr>
-                    <td>1er sumando:</td>
-                    <td><input name="s1"></td>
-                </tr>
-                <tr>
-                    <td>2º sumando:</td>
-                    <td><input name="s2"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="¡A Sumar!"></td>
-            </table>
-        </form-->   
-        <table>
-            <tr>
-                <td>
-
-                    <button id="iniciarLectura" onclick="iniciarLectura();">Iniciar lectura</button> 
-                </td>                    
-                <td>
-                    <button id="pararLectura" onclick="pararLectura();">Parar lectura</button>
-                </td>
-            </tr>
-                
-            <tr>                   
-                <br>
-                <b>Estado lectura: </b><div id="estadoLectura">? ? ?</div>
-                <br>
-            </tr>
-                
-            
-                <td align="center">
-                    <canvas id="graficoDeposito" width="50" height="260" style="border:1px solid #d3d3d3;">
-                        Your browser does not support the HTML5 canvas tag.
-                    </canvas>
-                    <table><tr><td>Termómetro </td><td><div id="nivelDeposito" style="font-weight: bold">? ? ?</div></td><td> ºC</td></tr></table>
-                </td>
-            </tr>
-            
-            <!--tr>
-                <td align="center" valign="top">
-
-                    <br>
-                    Grifo IN: <div id="grifoIn">? ? ?</div>
-                    <br>
-                    <button id="abrirGrifoIn" onclick="openGrifoIn();">Abrir</button> 
-                    <button id="cerrarGrifoIn" onclick="closeGrifoIn();">Cerrar</button>
-                </td>
-                         
-                <td align="center" valign="bottom">
-
-                    <br>
-                    Grifo OUT: <div id="grifoOut">? ? ?</div>
-                    <br>
-                    <button id="abrirGrifoOut" onclick="openGrifoOut();">Abrir</button> 
-                    <button id="cerrarGrifoOut" onclick="closeGrifoOut();">Cerrar</button>
-                </td>
-            </tr-->
-            
-        </table>
-        
-        <script type="text/javascript" src="websocket.js"></script>
-        
-        
-        
-        
-        <table>
-            
-            
-            <tr>                
-                <td>
-                    
-
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    
-
-                </td>
-                
-                <td align="center" valign="bottom">
-
-                    <br>
-                    Estado Lectura: <div id="lectura">? ? ?</div>
-                    <br>
-                    <button id="botonIniciarRefrigeracion" onclick="iniciarRefrigeracion();">Iniciar Refrigeración</button> 
-                    <button id="botonParararRefrigeracion" onclick="pararRefrigeracion();">Parar Refrigeración</button> 
-                    <button id="botonIniciarLectura" onclick="iniciarLectura();">Iniciar Lectura</button> 
-                    <button id="botonPararLectura" onclick="pararLectura();">Parar Lectura</button>
-                </td>
-            </tr>
-            <tr>
-                <td align="center">
-                    <canvas id="graficoTermometro" width="50" height="260" style="border:1px solid #d3d3d3;">
-                        Your browser does not support the HTML5 canvas tag.
-                    </canvas>
-                    <table><tr><td>Termómetro: </td><td><div id="tempTermometro" style="font-weight: bold">? ? ?</div></td><td>ºC</td></tr></table>
-                </td>
-            </tr>
-            
-        </table>
-        <br>
-        <br>
-        
+           
         <script type="text/javascript" src="websocket.js"></script>
         
         

@@ -35,34 +35,7 @@
         </form>
         
         <br>
-        <br>          
-        
-        <!--form method="POST" action="recomendar">
-            <!--SUSTITUIR ESTAS DOS LÍNEAS POR LA MEDIA DE TEMPERATURAS>
-            <input type=hidden name=s1 value=100>
-            <input type=hidden name=s2 value=50>
-
-            <button type="submit">Mostrar recomendacion</button>
-        </form-->
-        
-        <!--INCLUIR UNA TABLA DE IP's CONSULTADAS-->
-        
-        <!-- Comento los sumadores -->        
-        <!--form method="POST" action="sumador">
-            <table>
-                <tr>
-                    <td>1er sumando:</td>
-                    <td><input name="s1"></td>
-                </tr>
-                <tr>
-                    <td>2º sumando:</td>
-                    <td><input name="s2"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="¡A Sumar!"></td>
-            </table>
-        </form-->  
+        <br>   
         
     </body>
 </html>
