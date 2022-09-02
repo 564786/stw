@@ -54,7 +54,7 @@ public class TermometroBean {
         //}
     }
    
-    @Schedule (hour="*", minute="*", second="*/1")
+    @Schedule (hour="*", minute="*", second="*/1", persistent=false)
     public void leerTemperatura(){        
         this.temperatura = 0.0;
         if(this.lecturaIniciada){
