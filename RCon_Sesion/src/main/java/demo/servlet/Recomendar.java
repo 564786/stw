@@ -1,3 +1,9 @@
+/**
+ *
+ * @author Usuario
+ */
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,7 +12,6 @@
 package demo.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,10 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Usuario
- */
+
 @WebServlet(name = "Recomendar", urlPatterns = {"/recomendar"})
 public class Recomendar extends HttpServlet {
 
@@ -30,20 +32,22 @@ public class Recomendar extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, 
+            HttpServletResponse response)
             throws ServletException, IOException {
         
         String recomendacion = "";
         
         Double s1 = Double.valueOf(request.getParameter("s1"));
         Double s2 = Double.valueOf(request.getParameter("s2"));
-        Double diferencia = s2 - s1;
+        Double diferencia = s1 - s2;
                         
-        recomendacion = "Temperatura RPi: " + s1 + "<br>" + "<bt>Temperatura OW: " + s2 
-                + "<br>" ;
+        recomendacion = "Temperatura RPi: " + s1 + "<br>" + 
+                "<bt>Temperatura OW: " + s2 + "<br>" ;
         
         if(diferencia <= 10){
-            recomendacion = recomendacion + "<br> No es necesario tomar ninguna accion";
+            recomendacion = recomendacion + "<br> No es necesario tomar "
+                    + "ninguna accion";
         }else{
             recomendacion = recomendacion + "<br> Es necesario refrigerar";
         }

@@ -4,7 +4,7 @@
  */
 package demo;
 
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+//import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;

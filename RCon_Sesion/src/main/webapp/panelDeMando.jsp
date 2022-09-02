@@ -34,7 +34,7 @@
         
         <table border="back">
             <tr>
-                <td>
+                <td align="center">
                     <h2>Menu</h2>
                 </td>
             </tr>

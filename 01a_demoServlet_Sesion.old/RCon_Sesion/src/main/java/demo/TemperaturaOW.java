@@ -50,13 +50,18 @@ public class TemperaturaOW {
     public int getTemperaturaOW() {
         //String URL = "https://api.openweathermap.org/data/2.5/weather?q=teruel&appid=996866bb954a2a8e65b9644c759a5b85";
         String respuesta = "";
-        String temperatura = "aaa";
+        String temperatura = "666";
 
         
         try {
             respuesta = peticionHttpGet(URL);
-            JSONObject lecturaOW = new JSONObject(respuesta);
-            temperatura = lecturaOW.query("/main/temp_max").toString();              
+            if (respuesta!=null){                
+                JSONObject lecturaOW = new JSONObject(respuesta);
+                temperatura = lecturaOW.query("/main/temp_max").toString();
+            }        else{
+                temperatura = "293";
+            }
+            
         } catch (Exception e) {
                 // Manejar excepción
                 e.printStackTrace();
@@ -64,8 +69,4 @@ public class TemperaturaOW {
 
         return (Integer.parseInt(temperatura.substring(0,3))-273);
 	}
-    
-    public int test(){
-        return 333;
-    }
 }

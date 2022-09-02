@@ -19,12 +19,19 @@ import javax.ejb.Stateless;
 @Stateless
 public class TermometroBean {
 
-    private Double temperatura          = 1.0;
+    private final String COMANDO_LEER_TEMPERATURA = "cat "
+            + "/sys/class/thermal/thermal_zone0/temp";
+    private final String COMANDO_INICIAR_REFRIGERACION = "mosquitto_pub -h "
+            + "192.168.1.140 -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 1";
+    private final String COMANDO_PARAR_REFRIGERACION = "mosquitto_pub -h "
+            + "192.168.1.140 -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 0";
+    
+    private Double temperatura          = 0.0;
     
     private boolean lecturaIniciada     = false;
     private String resultado = "";
     private ConexionSSH conexionSSH = new ConexionSSH();
-    public double tempCPU = 0;
+    public double tempCPU = 0.0;
                 
     @EJB  WebSocketManager websocket;
     
@@ -44,18 +51,24 @@ public class TermometroBean {
     }
    
     @Schedule (hour="*", minute="*", second="*/1")
-    public void leerTemperatura(){
-        
-        this.temperatura = 1.0;
-        
-        if(lecturaIniciada()){
-            resultado = conexionSSH.enviarComando("cat /sys/class/thermal/thermal_zone0/temp");
-
-            this.temperatura = Double.parseDouble(resultado.substring(0,5))/1000;    
-        } 
-        
+    public void leerTemperatura(){        
+        this.temperatura = 0.0;
+        if(this.lecturaIniciada){
+            //resultado = conexionSSH.enviarComando(COMANDO_LEER_TEMPERATURA);
+            //this.temperatura = Double.parseDouble(resultado.substring(0,5))/1000;   
+            this.temperatura = envioComandoLecturaTemperatura();
+        } else {
+            this.temperatura = 0.0;
+        }
         
         websocket.broadcastValorNumerico(this.temperatura);
+    }
+    
+    public double envioComandoLecturaTemperatura(){        
+        double temp = 0.0;
+        resultado = conexionSSH.enviarComando(COMANDO_LEER_TEMPERATURA);
+        temp = Double.parseDouble(resultado.substring(0,5))/1000;
+        return temp;
     }
     
     public boolean lecturaIniciada(){
@@ -72,15 +85,16 @@ public class TermometroBean {
     }
     
     public void iniciarRefrigeracion(){
-        conexionSSH.enviarComando("mosquitto_pub -h 192.168.1.140 -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 1");
+        conexionSSH.enviarComando(COMANDO_INICIAR_REFRIGERACION);
     }
     
     public void pararRefrigeracion(){
-        conexionSSH.enviarComando("mosquitto_pub -h 192.168.1.140 -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 0");
+        conexionSSH.enviarComando(COMANDO_PARAR_REFRIGERACION);
     }
 
     public double getTempCPU(){
-        return this.temperatura;
-        //return 70.5;
+        tempCPU = envioComandoLecturaTemperatura(); 
+        return tempCPU;
+        
     }
 }

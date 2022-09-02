@@ -75,14 +75,12 @@ console.log("==== "+msg);
         console.log("ERROR: "+event.toString());
     };
 } //openSocket
-           
-                
 
 /**
- * ==================== open/closeGrifo IN/OUT =========================================
+ * Accion botones
+ * 
  * @returns {undefined}
  */
-
 function iniciarLectura(){
     webSocket.send("iniciarLectura");
 }
@@ -119,20 +117,18 @@ function updateTermometro(_temperatura){
     var temperatura = (_temperatura*1.0).toFixed(2);
     tempTermometro.innerHTML = temperatura;
     
-//==== depósito ============================
-
+//==== termometro ============================
         
     graficoTermometro.fillStyle = "#FFFFFF"; //blanco #FFFFFF
     graficoTermometro.fillRect(5,0,40,126);
     if(temperatura<=45.5){
             graficoTermometro.fillStyle = "green";
-    }else if((temperatura>45.5)&&(temperatura<=47.1)){
+    }else if((temperatura>45.5)&&(temperatura<=47.5)){
             graficoTermometro.fillStyle = "orange";
     }else{
             graficoTermometro.fillStyle = "red"; 
     }
-    graficoTermometro.fillRect(5, (120-temperatura), 40, temperatura);
-    
+    graficoTermometro.fillRect(5, (120-temperatura), 40, temperatura);    
     
 //==== lectura temperatura ============================
     if(estadoLectura === true){

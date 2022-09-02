@@ -28,7 +28,7 @@
         
         <table border="back">
             <tr>
-                <td>
+                <td align="center">
                     <h2>Menu</h2>
                 </td>
             </tr>
@@ -55,7 +55,7 @@
             <tr>
                 <td>
                     <form method="POST" action="recomendar">
-                        <input type=hidden name=s1  value=<%out.println( termometroBean.getTempCPU());%>>
+                        <input type=hidden name=s1  value=<%out.println( termometroBean.getTempCPU());%>>                        
                         <input type=hidden name=s2  value=<%out.println( temperaturaOW.getTempOW());%>>
                         <button type="submit">Mostrar recomendacion</button>
                     </form>
@@ -81,8 +81,6 @@
                 </td> 
                 <td align="center">
                     <%
-                        
-                        //temperaturaOW.getTemperaturaOW("2");
                         out.println("Temperatura máxima en <br> <b>Teruel</b> <br> para hoy es:");
                     %>
                 </td>

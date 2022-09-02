@@ -34,13 +34,6 @@ public class VisualizadorRecomendacion extends HttpServlet {
         
         HttpSession session = request.getSession();
         String recomendacion = (String)session.getAttribute("recomendacion");
-        /*Integer totalAcumulado = (Integer)session.getAttribute("acumulado");
-        if (totalAcumulado==null){
-            totalAcumulado = 0;
-        }
-        totalAcumulado += resultado;
-        session.setAttribute("acumulado", totalAcumulado);
-        */
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -59,8 +52,6 @@ public class VisualizadorRecomendacion extends HttpServlet {
             out.println("<br><br>");
             out.println("<b>"+recomendacion+"</b>");
             out.println("<br><br>");
-            
-            //AÑADIR BOTON APAGAR/ENCENDER VENTILADOR
             
             out.println("<table>"
                 +"<tr>"
