@@ -1,3 +1,12 @@
+/**
+ * @author Alvaro Fraidias NIP 780336
+ * @author Rafael Rodriguez NIP 564786
+ * 
+ * Referencias utilizadas:
+ * apuntes de @fserna
+ * 
+ */
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -43,6 +52,7 @@ public class WebSocketManager {
      * In the method onOpen, we'll let the user know that the handshake was 
      * successful.
      */
+    
     @OnOpen
     public void onOpen(Session _session){
         System.out.println(">>> Session " +_session.getId()+" created");
@@ -78,9 +88,7 @@ public class WebSocketManager {
            case "pararRefrigeracion":
                termometro.pararRefrigeracion();
            break;
-       }
-       
-       
+       }   
     }
  
     /**
@@ -93,8 +101,6 @@ public class WebSocketManager {
         System.out.println("--- Session " +_session.getId()+" has ended");
         sessions.remove(_session);
     }
-    
-    
 
     public void destroy(){
         System.out.println("xxx WebSockerManager says Bye! ---------------");
@@ -106,13 +112,11 @@ public class WebSocketManager {
         }
         sessions.clear();
     }
-
-
+    
     @OnError
     public void onError(Session _session, Throwable t) {
         System.out.println("--- ERROR in session " +_session.getId());
     }
-
 
     /**
      * Envía el valor numérico "_v" a todas las sesiones existentes (broadcast)
@@ -128,7 +132,6 @@ public class WebSocketManager {
         }
     }
     
-
     /**
      * Envía el texto "_msg" a todas las sesiones existentes (broadcast)
      * @param _msg 

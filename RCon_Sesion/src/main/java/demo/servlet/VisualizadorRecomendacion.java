@@ -1,3 +1,12 @@
+/**
+ * @author Alvaro Fraidias NIP 780336
+ * @author Rafael Rodriguez NIP 564786
+ * 
+ * Referencias utilizadas:
+ * apuntes de @fserna
+ * 
+ */
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
@@ -13,10 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author rafar
- */
 @WebServlet(name = "VisualizadorRecomendacion", urlPatterns = {"/visualizadorRecomendacion"})
 public class VisualizadorRecomendacion extends HttpServlet {
 
@@ -29,6 +34,7 @@ public class VisualizadorRecomendacion extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         

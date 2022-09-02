@@ -1,8 +1,11 @@
 /**
- *
- * @author Usuario
+ * @author Alvaro Fraidias NIP 780336
+ * @author Rafael Rodriguez NIP 564786
+ * 
+ * Referencias utilizadas:
+ * apuntes de @fserna
+ * 
  */
-
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,7 +21,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 
 @WebServlet(name = "Recomendar", urlPatterns = {"/recomendar"})
 public class Recomendar extends HttpServlet {
@@ -58,8 +60,6 @@ public class Recomendar extends HttpServlet {
         
         response.sendRedirect("visualizadorRecomendacion");
     }
-    
-    
 
     @Override
     public void init(){
@@ -71,9 +71,6 @@ public class Recomendar extends HttpServlet {
     public void destroy(){
         System.out.println("===== DESTROY");
     }
-    
-    
-    
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

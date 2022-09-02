@@ -1,3 +1,12 @@
+/**
+ * @author Alvaro Fraidias NIP 780336
+ * @author Rafael Rodriguez NIP 564786
+ * 
+ * Referencias utilizadas:
+ * apuntes de @fserna
+ * 
+ */
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates

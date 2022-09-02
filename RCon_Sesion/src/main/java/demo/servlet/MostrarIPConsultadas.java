@@ -1,4 +1,16 @@
-/*NO SE USA
+/**
+ * @author Alvaro Fraidias NIP 780336
+ * @author Rafael Rodriguez NIP 564786
+ * 
+ * Referencias utilizadas:
+ * apuntes de @fserna
+ * 
+ * Finalmente esta clase no se usa pero  pero tiene referencia 
+ * en otras partes del proyecto
+ * 
+ */
+
+/*
  *
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -43,8 +55,6 @@ public class MostrarIPConsultadas extends HttpServlet {
         
         //response.sendRedirect("visualizadorRecomendacion");
     }
-    
-    
 
     @Override
     public void init(){

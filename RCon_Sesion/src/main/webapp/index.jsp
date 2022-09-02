@@ -1,4 +1,14 @@
-<%-- 
+<!--
+ * @author Alvaro Fraidias NIP 780336
+ * @author Rafael Rodriguez NIP 564786
+ * 
+ * Referencias utilizadas:
+ * apuntes de @fserna
+ * 
+ */
+ -->
+ 
+ <%-- 
     Document   : index
     Created on : 15 ago 2022, 14:32:19
     Author     : rafar

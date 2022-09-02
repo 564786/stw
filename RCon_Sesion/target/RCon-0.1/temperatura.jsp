@@ -1,4 +1,14 @@
-<%-- 
+<!--
+ * @author Alvaro Fraidias NIP 780336
+ * @author Rafael Rodriguez NIP 564786
+ * 
+ * Referencias utilizadas:
+ * apuntes de @fserna
+ * 
+ */
+ -->
+ 
+ <%-- 
     Document   : temperatura
     Created on : 19 ago 2022, 18:41:56
     Author     : rafar
@@ -11,7 +21,6 @@
     TemperaturaOW temperaturaOW = new TemperaturaOW();
     temperaturaOW.getTemperaturaOW();
 %>
-
 
 
 <!DOCTYPE html>
@@ -108,29 +117,14 @@
                     </canvas>
                     </td>               
             </tr>
-
-
-
         </table>  
             
         <br><br>
            
         <script type="text/javascript" src="websocket.js"></script>
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <br><br><br><br>
+
+        <br><br>
         <a href="panelDeMando.jsp">Volver al panel de mando</a>
         <br>
         <a href="index.jsp">Inicio</a>

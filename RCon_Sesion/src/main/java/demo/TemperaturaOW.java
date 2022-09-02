@@ -1,3 +1,16 @@
+/**
+ * @author Alvaro Fraidias NIP 780336
+ * @author Rafael Rodriguez NIP 564786
+ * 
+ * Referencias utilizadas:
+ * apuntes de @fserna
+ * https://parzibyte.me/blog/2019/02/14/peticion-http-get-java-consumir-html-json/
+ * https://mvnrepository.com/artifact/org.json/json/20180813
+ * https://parzibyte.me/blog/2019/02/16/parsear-decodificar-json-java-jsonobject-jsonarray/
+ * https://github.com/stleary/JSON-java
+ */
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -5,24 +18,13 @@
 package demo;
 
 //import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.BufferedReader;;
 import java.io.InputStreamReader;
-import javax.json.Json;
-import javax.json.JsonReader;
-import javax.json.JsonStructure;
-
-import static java.lang.System.out;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 
-/**
- *
- * @author RAFA
- */
+
 public class TemperaturaOW {
     
     final String URL = "https://api.openweathermap.org/data/2.5/weather?q=teruel&appid=996866bb954a2a8e65b9644c759a5b85";  
@@ -55,7 +57,6 @@ public class TemperaturaOW {
     }
         
     public double getTemperaturaOW() {
-        //String URL = "https://api.openweathermap.org/data/2.5/weather?q=teruel&appid=996866bb954a2a8e65b9644c759a5b85";
         String respuesta = "";
         String temperatura = "493";
         
@@ -74,14 +75,10 @@ public class TemperaturaOW {
                 e.printStackTrace();
         }
         
-        
-
-        //return (Integer.parseInt(temperatura.substring(0,3))-273);
         return tempOW;
 	}
     
     public double getTempOW(){
         return tempOW;
-        //return 250.9;
     }
 }

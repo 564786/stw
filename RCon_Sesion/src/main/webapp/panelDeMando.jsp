@@ -1,24 +1,14 @@
-<%-- 
-    Document   : panelDeMando
-    Created on : 15 ago 2022, 18:09:14
-    Author     : rafar
---%>
-
-
-
-<%@page import="demo.ConexionSSH"%>
-<%@page import="java.io.IOException"%>
-<%@page import="com.jcraft.jsch.JSchException"%>
-<%@page import="demo.SSHConnector"%>
-<%@page import="demo.Raspberry"%>
-<%@page import="com.jcraft.jsch.JSchException"%>
-<%@page import="java.io.IOException"%>
-<%@page import="static java.lang.Integer.parseInt"%>
+<!--
+ * @author Alvaro Fraidias NIP 780336
+ * @author Rafael Rodriguez NIP 564786
+ * 
+ * Referencias utilizadas:
+ * apuntes de @fserna
+ * 
+ */
+ -->
+ 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%ConexionSSH conexionSSH = new ConexionSSH();
-    final String REFRIGERAR = "mosquitto_pub -h 192.168.1.140 -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 1";
-    final String PARAR_REFRIGERACION = "mosquitto_pub -h 192.168.1.140 -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 0";
-    %>
 
 <!DOCTYPE html>
 <html>

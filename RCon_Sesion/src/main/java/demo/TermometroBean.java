@@ -1,3 +1,12 @@
+/**
+ * @author Alvaro Fraidias NIP 780336
+ * @author Rafael Rodriguez NIP 564786
+ * 
+ * Referencias utilizadas:
+ * apuntes de @fserna
+ * 
+ */
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,10 +21,7 @@ import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-/**
- *
- * @author fserna
- */
+
 @Stateless
 public class TermometroBean {
 
@@ -26,15 +32,13 @@ public class TermometroBean {
     private final String COMANDO_PARAR_REFRIGERACION = "mosquitto_pub -h "
             + "192.168.1.140 -u stw -P stweb22 -t /stw/rr/s141/cmnd/POWER -m 0";
     
-    private Double temperatura          = 0.0;
-    
-    private boolean lecturaIniciada     = false;
-    private String resultado = "";
     private ConexionSSH conexionSSH = new ConexionSSH();
-    public double tempCPU = 0.0;
+    private Double temperatura          = 0.0;    
+    private boolean lecturaIniciada     = false;
+    private String resultado = "";    
+    private double tempCPU = 0.0;
                 
-    @EJB  WebSocketManager websocket;
-    
+    @EJB  WebSocketManager websocket;    
     
     @PostConstruct
     public void init(){
@@ -54,18 +58,15 @@ public class TermometroBean {
     public void leerTemperatura(){        
         this.temperatura = 0.0;
         if(this.lecturaIniciada){
-            //resultado = conexionSSH.enviarComando(COMANDO_LEER_TEMPERATURA);
-            //this.temperatura = Double.parseDouble(resultado.substring(0,5))/1000;   
             this.temperatura = envioComandoLecturaTemperatura();
         } else {
             this.temperatura = 0.0;
-        }
-        
+        }        
         websocket.broadcastValorNumerico(this.temperatura);
     }
     
     public double envioComandoLecturaTemperatura(){        
-        double temp = 0.0;
+        double temp;
         resultado = conexionSSH.enviarComando(COMANDO_LEER_TEMPERATURA);
         temp = Double.parseDouble(resultado.substring(0,5))/1000;
         return temp;
@@ -94,7 +95,6 @@ public class TermometroBean {
 
     public double getTempCPU(){
         tempCPU = envioComandoLecturaTemperatura(); 
-        return tempCPU;
-        
+        return tempCPU;        
     }
 }

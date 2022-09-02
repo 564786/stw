@@ -34,12 +34,9 @@ public class LeerTemperaturaRaspberry extends HttpServlet {
         
         String s1 = String.valueOf(request.getParameter("s1"));
         String ipRaspberry = s1;
-        //String URL = "file://"+s1+"/tcp.txt"
         
         Boolean encendida;
                 
-        //String s1 = String.valueOf(request.getParameter("s1"));
-        //String ipRaspberry = s1;
         ArrayList ipConsultadas = new ArrayList();
         
         Raspberry raspberry = new Raspberry();
@@ -51,10 +48,6 @@ public class LeerTemperaturaRaspberry extends HttpServlet {
         session.setAttribute("ipRaspberry", ipRaspberry);
         session.setAttribute("encendida", encendida);
         session.setAttribute("ipConsultadas", ipConsultadas);
-        
-
-        
-        
         
         response.sendRedirect("visualizadorDeEstado");
     }

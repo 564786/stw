@@ -1,3 +1,12 @@
+/**
+ * @author Alvaro Fraidias NIP 780336
+ * @author Rafael Rodriguez NIP 564786
+ * 
+ * Referencias utilizadas:
+ * apuntes de @fserna
+ * 
+ */
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -13,10 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author rafar
- */
+
 @WebServlet(name = "VisualizadorDeEstado", urlPatterns = {"/visualizadorDeEstado"})
 public class VisualizadorDeEstado extends HttpServlet{
     
@@ -36,13 +42,6 @@ public class VisualizadorDeEstado extends HttpServlet{
         HttpSession session = request.getSession();
         String ipRaspberry = (String)session.getAttribute("ipRaspberry");
         Boolean encendida = (Boolean)session.getAttribute("encendida");
-        /*Integer totalAcumulado = (Integer)session.getAttribute("acumulado");
-        if (totalAcumulado==null){
-            totalAcumulado = 0;
-        }
-        totalAcumulado += resultado;
-        session.setAttribute("acumulado", totalAcumulado);
-        */
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {

@@ -1,3 +1,11 @@
+/**
+ * @author Alvaro Fraidias NIP 780336
+ * @author Rafael Rodriguez NIP 564786
+ * 
+ * Referencias utilizadas:
+ * apuntes de @fserna
+ * 
+ */
 
 var wsUri = "ws://" + document.location.host + "/RCon_Sesion/termometro";
 var webSocket;
@@ -22,8 +30,6 @@ var estadoLectura = false;
 
 openSocket();
 
-
-
 /**
  * ==================== openSocket =========================================
  * @returns {undefined}
@@ -36,7 +42,6 @@ openSocket();
     }
     
     webSocket = new WebSocket(wsUri);
-
 
     /**
      * Binds functions to the listeners for the websocket.
