@@ -7,12 +7,7 @@
  * 
  */
  -->
- 
- <%-- 
-    Document   : index
-    Created on : 15 ago 2022, 14:32:19
-    Author     : rafar
---%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 

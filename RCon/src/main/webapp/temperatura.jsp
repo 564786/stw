@@ -8,11 +8,6 @@
  */
  -->
  
- <%-- 
-    Document   : temperatura
-    Created on : 19 ago 2022, 18:41:56
-    Author     : rafar
---%>
 <%@page import="demo.TermometroBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="demo.TemperaturaOW"%>
@@ -27,12 +22,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>temperatura.jsp</title>
     </head>
     <body>
-        <h1>Hello World! I'm temperatura.jsp</h1>
         
-                
         <h1> TEMPERATURA </h1>  
         
         <table border="back">

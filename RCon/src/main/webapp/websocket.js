@@ -7,7 +7,7 @@
  * 
  */
 
-var wsUri = "ws://" + document.location.host + "/RCon_Sesion/termometro";
+var wsUri = "ws://" + document.location.host + "/RCon/termometro";
 var webSocket;
 
 // elementos IU - div
